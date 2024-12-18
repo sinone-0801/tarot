@@ -1,0 +1,427 @@
+{
+    "major_arcana": [
+      {
+        "number": 0,
+        "name": "愚者 (The Fool)",
+        "positive": ["無邪気さ", "自由", "未知への旅立ち", "冒険心"],
+        "negative": ["軽率さ", "不安定", "無計画"]
+      },
+      {
+        "number": 1,
+        "name": "魔術師 (The Magician)",
+        "positive": ["創造力", "意志力", "行動力", "可能性の発現"],
+        "negative": ["偽り", "誤魔化し", "空回り"]
+      },
+      {
+        "number": 2,
+        "name": "女教皇 (The High Priestess)",
+        "positive": ["直感", "潜在意識", "神秘", "静観"],
+        "negative": ["秘密主義", "無関与", "受動的停滞"]
+      },
+      {
+        "number": 3,
+        "name": "女帝 (The Empress)",
+        "positive": ["豊穣", "母性", "美的感性", "安定した成長"],
+        "negative": ["過保護", "怠惰", "放漫"]
+      },
+      {
+        "number": 4,
+        "name": "皇帝 (The Emperor)",
+        "positive": ["統率力", "秩序", "安定", "責任感"],
+        "negative": ["頑固", "権威主義", "支配的"]
+      },
+      {
+        "number": 5,
+        "name": "法王 (The Hierophant)",
+        "positive": ["伝統", "道徳", "教え", "精神性の継承"],
+        "negative": ["杓子定規", "閉鎖的", "古臭い価値観"]
+      },
+      {
+        "number": 6,
+        "name": "恋人 (The Lovers)",
+        "positive": ["愛", "選択", "調和", "人間関係の深化"],
+        "negative": ["優柔不断", "三角関係", "葛藤"]
+      },
+      {
+        "number": 7,
+        "name": "戦車 (The Chariot)",
+        "positive": ["前進", "勝利", "意思貫徹", "困難突破"],
+        "negative": ["強引", "焦り", "コントロール不能"]
+      },
+      {
+        "number": 8,
+        "name": "力 (Strength)",
+        "positive": ["内面的強さ", "勇気", "慈愛", "克服"],
+        "negative": ["自制心欠如", "欲望に負ける", "衝動的行動"]
+      },
+      {
+        "number": 9,
+        "name": "隠者 (The Hermit)",
+        "positive": ["内省", "知恵", "自己探求", "独立"],
+        "negative": ["孤立", "閉じこもり", "疎外感"]
+      },
+      {
+        "number": 10,
+        "name": "運命の輪 (The Wheel of Fortune)",
+        "positive": ["好転", "チャンス", "変化", "循環"],
+        "negative": ["不安定", "予測不可能", "浮き沈み"]
+      },
+      {
+        "number": 11,
+        "name": "正義 (Justice)",
+        "positive": ["公正", "中立", "バランス", "真実"],
+        "negative": ["偏見", "不公平", "判断ミス"]
+      },
+      {
+        "number": 12,
+        "name": "吊るされた男 (The Hanged Man)",
+        "positive": ["刷新", "視点転換", "犠牲", "献身"],
+        "negative": ["停滞", "優柔不断", "自己放棄"]
+      },
+      {
+        "number": 13,
+        "name": "死神 (Death)",
+        "positive": ["変容", "再生", "新生", "終わりと始まり"],
+        "negative": ["喪失", "断絶", "強制終了"]
+      },
+      {
+        "number": 14,
+        "name": "節制 (Temperance)",
+        "positive": ["調和", "節度", "癒し", "バランス"],
+        "negative": ["中途半端", "抑圧", "曖昧さ"]
+      },
+      {
+        "number": 15,
+        "name": "悪魔 (The Devil)",
+        "positive": ["欲望の理解", "物質的豊かさ"],
+        "negative": ["執着", "依存", "誘惑", "束縛"]
+      },
+      {
+        "number": 16,
+        "name": "塔 (The Tower)",
+        "positive": ["覚醒", "真実の露見", "刷新"],
+        "negative": ["破壊", "急変", "混乱", "ショック"]
+      },
+      {
+        "number": 17,
+        "name": "星 (The Star)",
+        "positive": ["希望", "癒し", "インスピレーション", "信念"],
+        "negative": ["現実逃避", "空想的", "期待外れ"]
+      },
+      {
+        "number": 18,
+        "name": "月 (The Moon)",
+        "positive": ["直感", "潜在意識", "創造性"],
+        "negative": ["不安", "混乱", "欺瞞", "幻惑"]
+      },
+      {
+        "number": 19,
+        "name": "太陽 (The Sun)",
+        "positive": ["喜び", "成功", "活力", "明朗"],
+        "negative": ["独善", "未熟な楽観"]
+      },
+      {
+        "number": 20,
+        "name": "審判 (Judgement)",
+        "positive": ["復活", "自己評価", "転機", "覚悟"],
+        "negative": ["過去への執着", "決断回避"]
+      },
+      {
+        "number": 21,
+        "name": "世界 (The World)",
+        "positive": ["完成", "達成", "統合", "完結"],
+        "negative": ["成長の停滞", "新展開の欠如"]
+      }
+    ],
+    "minor_arcana": {
+      "wands": [
+        {
+          "rank": "Ace",
+          "name": "Ace of Wands",
+          "meaning": "新たな情熱・始動するエネルギー"
+        },
+        {
+          "rank": "2",
+          "name": "Two of Wands",
+          "meaning": "計画、展望、選択肢の検討"
+        },
+        {
+          "rank": "3",
+          "name": "Three of Wands",
+          "meaning": "発展、見通し、拡大"
+        },
+        {
+          "rank": "4",
+          "name": "Four of Wands",
+          "meaning": "安定、祝福、達成感"
+        },
+        {
+          "rank": "5",
+          "name": "Five of Wands",
+          "meaning": "競争、葛藤、対立"
+        },
+        {
+          "rank": "6",
+          "name": "Six of Wands",
+          "meaning": "勝利、栄誉、承認"
+        },
+        {
+          "rank": "7",
+          "name": "Seven of Wands",
+          "meaning": "防衛、主張、困難への対処"
+        },
+        {
+          "rank": "8",
+          "name": "Eight of Wands",
+          "meaning": "急展開、迅速な行動、通信"
+        },
+        {
+          "rank": "9",
+          "name": "Nine of Wands",
+          "meaning": "傷つきながらも守り抜く、持久力"
+        },
+        {
+          "rank": "10",
+          "name": "Ten of Wands",
+          "meaning": "重荷、過労、責任過多"
+        },
+        {
+          "rank": "Page",
+          "name": "Page of Wands",
+          "meaning": "好奇心、冒険心、初々しい情熱"
+        },
+        {
+          "rank": "Knight",
+          "name": "Knight of Wands",
+          "meaning": "行動的、情熱的、積極性"
+        },
+        {
+          "rank": "Queen",
+          "name": "Queen of Wands",
+          "meaning": "自信、独立、情熱の指揮"
+        },
+        {
+          "rank": "King",
+          "name": "King of Wands",
+          "meaning": "カリスマ、リーダーシップ、創造的な統率"
+        }
+      ],
+      "cups": [
+        {
+          "rank": "Ace",
+          "name": "Ace of Cups",
+          "meaning": "新しい愛情、感情の高まり、心の充足"
+        },
+        {
+          "rank": "2",
+          "name": "Two of Cups",
+          "meaning": "パートナーシップ、愛の絆、和合"
+        },
+        {
+          "rank": "3",
+          "name": "Three of Cups",
+          "meaning": "友情、祝宴、喜びの共有"
+        },
+        {
+          "rank": "4",
+          "name": "Four of Cups",
+          "meaning": "マンネリ、不満、機会の見落とし"
+        },
+        {
+          "rank": "5",
+          "name": "Five of Cups",
+          "meaning": "喪失、後悔、悲しみ"
+        },
+        {
+          "rank": "6",
+          "name": "Six of Cups",
+          "meaning": "ノスタルジー、過去の幸福、純粋な思い出"
+        },
+        {
+          "rank": "7",
+          "name": "Seven of Cups",
+          "meaning": "選択肢過多、幻想、迷い"
+        },
+        {
+          "rank": "8",
+          "name": "Eight of Cups",
+          "meaning": "離脱、放棄、より良いものを求める旅立ち"
+        },
+        {
+          "rank": "9",
+          "name": "Nine of Cups",
+          "meaning": "願望成就、満足感、歓喜"
+        },
+        {
+          "rank": "10",
+          "name": "Ten of Cups",
+          "meaning": "家族的幸福、感情的充足、平和な結びつき"
+        },
+        {
+          "rank": "Page",
+          "name": "Page of Cups",
+          "meaning": "感受性、夢見がち、新たな感情の芽生え"
+        },
+        {
+          "rank": "Knight",
+          "name": "Knight of Cups",
+          "meaning": "ロマンチスト、優しさ、感性豊かな行動"
+        },
+        {
+          "rank": "Queen",
+          "name": "Queen of Cups",
+          "meaning": "思いやり、共感、内なる情感"
+        },
+        {
+          "rank": "King",
+          "name": "King of Cups",
+          "meaning": "感情的安定、寛容、理解力"
+        }
+      ],
+      "swords": [
+        {
+          "rank": "Ace",
+          "name": "Ace of Swords",
+          "meaning": "真実、知識、決断力、新たな知的始まり"
+        },
+        {
+          "rank": "2",
+          "name": "Two of Swords",
+          "meaning": "ジレンマ、板挟み、優柔不断"
+        },
+        {
+          "rank": "3",
+          "name": "Three of Swords",
+          "meaning": "心痛、裏切り、悲嘆"
+        },
+        {
+          "rank": "4",
+          "name": "Four of Swords",
+          "meaning": "休息、静養、内省"
+        },
+        {
+          "rank": "5",
+          "name": "Five of Swords",
+          "meaning": "敗北感、不正、自己中心的勝利"
+        },
+        {
+          "rank": "6",
+          "name": "Six of Swords",
+          "meaning": "移動、困難からの脱出、心の平穏への航行"
+        },
+        {
+          "rank": "7",
+          "name": "Seven of Swords",
+          "meaning": "策略、密かな行動、駆け引き"
+        },
+        {
+          "rank": "8",
+          "name": "Eight of Swords",
+          "meaning": "束縛、制限、思考の行き詰まり"
+        },
+        {
+          "rank": "9",
+          "name": "Nine of Swords",
+          "meaning": "不安、悪夢、過剰な心配"
+        },
+        {
+          "rank": "10",
+          "name": "Ten of Swords",
+          "meaning": "終焉、痛みのピーク、抜本的な終結"
+        },
+        {
+          "rank": "Page",
+          "name": "Page of Swords",
+          "meaning": "好奇心、探求心、初歩的知性"
+        },
+        {
+          "rank": "Knight",
+          "name": "Knight of Swords",
+          "meaning": "活発な知性、迅速な行動、突進的思考"
+        },
+        {
+          "rank": "Queen",
+          "name": "Queen of Swords",
+          "meaning": "独立心、明晰な判断、理性的な洞察"
+        },
+        {
+          "rank": "King",
+          "name": "King of Swords",
+          "meaning": "知的権威、公正な判断、戦略的思考"
+        }
+      ],
+      "pentacles": [
+        {
+          "rank": "Ace",
+          "name": "Ace of Pentacles",
+          "meaning": "財運の始まり、実利的チャンス、豊かさの種"
+        },
+        {
+          "rank": "2",
+          "name": "Two of Pentacles",
+          "meaning": "バランス、柔軟な適応、 juggling的状況"
+        },
+        {
+          "rank": "3",
+          "name": "Three of Pentacles",
+          "meaning": "協力、技能、チームワーク"
+        },
+        {
+          "rank": "4",
+          "name": "Four of Pentacles",
+          "meaning": "所有欲、堅実さ、独占"
+        },
+        {
+          "rank": "5",
+          "name": "Five of Pentacles",
+          "meaning": "貧困、欠乏、疎外感"
+        },
+        {
+          "rank": "6",
+          "name": "Six of Pentacles",
+          "meaning": "施し、均衡した与え受け、寛大さ"
+        },
+        {
+          "rank": "7",
+          "name": "Seven of Pentacles",
+          "meaning": "忍耐、成果待ち、長期的視野"
+        },
+        {
+          "rank": "8",
+          "name": "Eight of Pentacles",
+          "meaning": "勤勉、技能習得、地道な努力"
+        },
+        {
+          "rank": "9",
+          "name": "Nine of Pentacles",
+          "meaning": "豊かさ、独立、自己満足"
+        },
+        {
+          "rank": "10",
+          "name": "Ten of Pentacles",
+          "meaning": "家系的繁栄、物質的安定、継承"
+        },
+        {
+          "rank": "Page",
+          "name": "Page of Pentacles",
+          "meaning": "学習意欲、実務的な新しい始まり"
+        },
+        {
+          "rank": "Knight",
+          "name": "Knight of Pentacles",
+          "meaning": "忠実、堅実、着実な進展"
+        },
+        {
+          "rank": "Queen",
+          "name": "Queen of Pentacles",
+          "meaning": "豊かな母性、実務能力、物質面の安定"
+        },
+        {
+          "rank": "King",
+          "name": "King of Pentacles",
+          "meaning": "富と安定、信頼性、現実的リーダーシップ"
+        }
+      ]
+    }
+  }
+  

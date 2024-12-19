@@ -359,12 +359,6 @@
             <h1>タロット占い</h1>
         </div>
 
-        <div class="theme-input-container">
-            <p>何を占いますか？</p>
-            <textarea id="themeInput" placeholder="結婚、仕事、恋愛運など、占いたい内容を入力してください。"></textarea>
-            <button class="button" id="sendThemeBtn">占う内容を送信</button>
-        </div>
-
         <div class="table-area">
             <div class="status-message" id="statusMessage"></div>
             <div class="shuffle-area" id="shuffleArea"></div>
@@ -583,7 +577,7 @@
                 updateStatus("エラーが発生しました。");
             }
         }
-        
+
         function startShuffle() {
             if (isShuffling) return;
             document.getElementById('shuffleButton').style.display = 'none';

@@ -523,7 +523,7 @@
         async function callArliaiApiForTheme(userTheme) {
             showLoading('占いの準備をしています...');
 
-            const systemPrompt = "あなたは凄腕のタロット占い士です。ユーザーが占いたいテーマや悩みがあります。これからあなたが占いを行いますので、占い前の会話と導入を日本語でしてください。ユーザーのことは「あなた」と呼んでください。";
+            const systemPrompt = "あなたは凄腕のタロット占い士です。私が占いたいテーマや悩みがあります。これからあなたが占いを行いますので、占い前の会話と導入を日本語でしてください。";
             const userPrompt = `私は以下のように、占いを求めています:\n「${userTheme}」\nこのことについて、あなたはこれから占いを行ってください。\n占いの前に、タロット占い師としての視点から、占う内容を明確にして、私に語りかけてください。`;
 
             const messages = [
@@ -1044,7 +1044,7 @@
 
             showLoading('タロットカードからのメッセージを読み解いています...');
 
-            const systemPrompt = "あなたは凄腕のタロット占い士です。日本語で占いの結果を告げてください。ユーザーのことは「あなた」と呼んでください。";
+            const systemPrompt = "あなたは凄腕のタロット占い士です。日本語で占いの結果を告げてください。";
             let userPrompt = `私は「${themeMessageFromUser}」について占いを求めています。\n`;
             userPrompt += `以前、あなたは以下のアドバイスを伝えました:\n「${initialAssistantMessage}」\n\n`;
             userPrompt += "ここで3枚のタロットカードが展開され、それぞれ以下のような意味を持っています。\n\n";
@@ -1099,54 +1099,6 @@
                 console.error("Error calling final reading:", error);
                 hideLoading();
                 updateStatus('申し訳ありません。リーディング中にエラーが発生しました。');
-            }
-        }
-
-        async function callArliaiAPI() {
-            const systemPrompt = "あなたは凄腕のタロット占い士です。結婚運の過去・現在・未来についての占いを行ってください。";
-            let userPrompt = "以下が展開された3枚のカードです。\n";
-            userPrompt += "これらは結婚運の過去・現在・未来を表しています。\n\n";
-            userPrompt += `【過去】 1枚目: ${revealedCardMessages[0].name}（${revealedCardMessages[0].orientation}）\n意味: ${revealedCardMessages[0].meaning}\n\n`;
-            userPrompt += `【現在】 2枚目: ${revealedCardMessages[1].name}（${revealedCardMessages[1].orientation}）\n意味: ${revealedCardMessages[1].meaning}\n\n`;
-            userPrompt += `【未来】 3枚目: ${revealedCardMessages[2].name}（${revealedCardMessages[2].orientation}）\n意味: ${revealedCardMessages[2].meaning}\n\n`;
-            userPrompt += "これらを踏まえて、結婚運の流れとアドバイスを教えてください。";
-
-            const messages = [
-                { "role": "system", "content": systemPrompt },
-                { "role": "user", "content": userPrompt }
-            ];
-
-            const payload = {
-                "model": "Mistral-Nemo-12B-Instruct-2407",
-                "messages": messages,
-                "repetition_penalty": 1.1,
-                "temperature": 0.7,
-                "top_p": 0.9,
-                "top_k": 40,
-                "max_tokens": 1024,
-                "stream": false
-            };
-
-            try {
-                const response = await fetch("https://api.arliai.com/v1/chat/completions", {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${ARLIAI_API_KEY}`
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    throw new Error("API request failed");
-                }
-
-                const result = await response.json();
-
-                const meaningContainer = document.getElementById('meaningContainer');
-                meaningContainer.innerHTML += `<hr><h2>総合リーディング結果</h2><p>${result.choices[0].message.content}</p>`;
-            } catch (error) {
-                console.error("Error calling ARLIAI API:", error);
             }
         }
 

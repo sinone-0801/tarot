@@ -524,7 +524,7 @@
             showLoading('占いの準備をしています...');
 
             const systemPrompt = "あなたは凄腕のタロット占い士です。ユーザーが占いたいテーマや悩みがあります。これからあなたが占いを行いますので、占い前の会話と導入を日本語でしてください。ユーザーのことは「あなた」と呼んでください。";
-            const userPrompt = `ユーザーは以下のように発言し、占いを求めています:\n「${userTheme}」\nこのことについて、あなたはこれから占いを行います。\n占いの前に、タロット占い師としての視点から、どのような点に注目すべきか、簡潔にアドバイスしてください。`;
+            const userPrompt = `ユーザーは以下のように発言し、占いを求めています:\n「${userTheme}」\nこのことについて、あなたはこれから占いを行います。\n占いの前に、タロット占い師としての視点から、占う内容を明確にしてください。`;
 
             const messages = [
                 { "role": "system", "content": systemPrompt },
@@ -1019,7 +1019,9 @@
             if (revealCount >= selectedCards.length) {
                 document.getElementById('revealButton').style.display = 'none';
                 updateStatus('リーディングが完了しました');
-
+                
+                const wait = async (ms) => new Promise(resolve => setTimeout(resolve, ms));
+                wait(2000);
                 // 全カード表示後に再度ARLIAI APIへ総合リーディング問い合わせ
                 callArliaiApiForFinalReading();
             }

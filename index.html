@@ -687,7 +687,7 @@
         async function callArliaiApiForTheme(userTheme) {
             showLoading('占いの準備をしています...');
 
-            const systemPrompt = "あなたは凄腕のタロット占い士です。私が占いたいテーマや悩みがあります。これからあなたが占いを行いますので、占い前の会話と導入を日本語でしてください。";
+            const systemPrompt = "あなたは凄腕のタロット占い士です。私が占いたいテーマや悩みがあります。これからあなたが占いを行いますので、占い前の会話と導入を必ず日本語でしてください。";
             const userPrompt = `私は以下のように、占いを求めています:\n「${userTheme}」\nこのことについて、あなたはこれから占いを行ってください。\n占いの前に、タロット占い師としての視点から、占う内容を明確にして、私に語りかけてください。`;
 
             const messages = [
@@ -1230,7 +1230,7 @@
 
             showLoading('タロットカードからのメッセージを読み解いています...');
 
-            const systemPrompt = "あなたは凄腕のタロット占い士です。日本語で占いの結果を告げてください。";
+            const systemPrompt = "あなたは凄腕のタロット占い士です。必ず日本語で占いの結果を告げてください。";
             let userPrompt = `私は「${themeMessageFromUser}」について占いを求めています。\n`;
             userPrompt += `占い前、あなたは以下のアドバイスを伝えました:\n「${initialAssistantMessage}」\n\n`;
             userPrompt += "ここで3枚のタロットカードが展開され、それぞれ以下のような意味を持っています。\n\n";

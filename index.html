@@ -282,6 +282,53 @@
             }
         }
 
+        /* pile-buttonの基本スタイル修正 */
+        .pile-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 30%; /* 追加 */
+            min-width: auto; /* min-widthを削除 */
+        }
+
+        .pile-buttons-row {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* タブレット用 */
+        @media (max-width: 768px) {
+            .pile-button {
+                padding: 12px;
+                font-size: 0.9em;
+                width: 30%;
+            }
+
+            .pile-buttons-row {
+                gap: 10px;
+            }
+        }
+
+        /* スマートフォン用 */
+        @media (max-width: 480px) {
+            .pile-button {
+                padding: 8px;
+                font-size: 0.85em;
+                width: 30%;
+            }
+
+            .pile-buttons-row {
+                gap: 8px;
+                flex-direction: row; /* 縦並びを解除 */
+            }
+        }
+
         .button:hover {
             background-color: #357abd;
         }

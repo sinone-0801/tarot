@@ -824,14 +824,12 @@
             userPrompt += `【未来】 3枚目: ${revealedCardMessages[2].name}（${revealedCardMessages[2].orientation}）\n意味: ${revealedCardMessages[2].meaning}\n\n`;
             userPrompt += "これらを踏まえて、結婚運の流れとアドバイスを教えてください。";
 
-            const messages = [
-                { "role": "system", "content": systemPrompt },
-                { "role": "user", "content": userPrompt }
-            ];
-
-            const payload = {
-                "messages": messages
-            };
+            // テキストで送りたい内容を整形
+            // ここではsystemとuserそれぞれのプロンプトを単純にテキスト連結していますが、
+            // GAS側でこのテキストを受け取ってパースする必要があります。
+            const textPayload = 
+                "ROLE:SYSTEM\n" + systemPrompt + "\n" +
+                "ROLE:USER\n" + userPrompt;
 
             const endpoint = "https://script.google.com/macros/s/AKfycbyJgljpJLXJ98SYD4lTjJTdiFx5thSfIw1F9ZQOhCsnLMH88elQDENaOt6S93vLqzB_/exec";
 
@@ -839,25 +837,28 @@
                 const response = await fetch(endpoint, {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "text/plain"
                     },
-                    body: JSON.stringify(payload)
+                    // JSON.stringifyは不要。テキストをそのまま送る
+                    body: textPayload
                 });
 
                 if (!response.ok) {
                     throw new Error("Failed to call GAS endpoint");
                 }
 
-                const result = await response.json();
-                console.log("GAS API Result:", result);
+                // レスポンスをテキストで取得
+                const resultText = await response.text();
+                console.log("GAS API Result (text):", resultText);
 
-                // 結果表示: meaningContainerに追記
+                // 結果をmeaningContainerに表示
                 const meaningContainer = document.getElementById('meaningContainer');
-                meaningContainer.innerHTML += `<hr><h2>総合リーディング結果</h2><p>${result.choices[0].message.content}</p>`;
+                meaningContainer.innerHTML += `<hr><h2>総合リーディング結果</h2><p>${resultText}</p>`;
             } catch (error) {
                 console.error("Error calling GAS endpoint:", error);
             }
         }
+
 
         window.onload = initializeCards;
     </script>

@@ -1206,7 +1206,7 @@
 
             const systemPrompt = "あなたは凄腕のタロット占い士です。日本語で占いの結果を告げてください。";
             let userPrompt = `私は「${themeMessageFromUser}」について占いを求めています。\n`;
-            userPrompt += `以前、あなたは以下のアドバイスを伝えました:\n「${initialAssistantMessage}」\n\n`;
+            userPrompt += `占い前、あなたは以下のアドバイスを伝えました:\n「${initialAssistantMessage}」\n\n`;
             userPrompt += "ここで3枚のタロットカードが展開され、それぞれ以下のような意味を持っています。\n\n";
             userPrompt += `【過去】 1枚目: ${revealedCardMessages[0].name}（${revealedCardMessages[0].orientation}）\n意味: ${revealedCardMessages[0].meaning}\n\n`;
             userPrompt += `【現在】 2枚目: ${revealedCardMessages[1].name}（${revealedCardMessages[1].orientation}）\n意味: ${revealedCardMessages[1].meaning}\n\n`;

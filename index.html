@@ -286,6 +286,7 @@
 
 
     <script>
+        const ARLIAI_API_KEY = "60b9438b-c52a-4bc8-b14f-f890b724496c";
         const CARD_COUNT = 78;
         let cards = [];
         let isShuffling = false;
@@ -812,11 +813,8 @@
             }
         }
 
-        async function callGASEndpoint() {
-            // system prompt
+        async function callArliaiAPI() {
             const systemPrompt = "あなたは凄腕のタロット占い士です。結婚運の過去・現在・未来についての占いを行ってください。";
-
-            // user prompt（例として、1枚目が過去、2枚目が現在、3枚目が未来とする）
             let userPrompt = "以下が展開された3枚のカードです。\n";
             userPrompt += "これらは結婚運の過去・現在・未来を表しています。\n\n";
             userPrompt += `【過去】 1枚目: ${revealedCardMessages[0].name}（${revealedCardMessages[0].orientation}）\n意味: ${revealedCardMessages[0].meaning}\n\n`;
@@ -824,42 +822,45 @@
             userPrompt += `【未来】 3枚目: ${revealedCardMessages[2].name}（${revealedCardMessages[2].orientation}）\n意味: ${revealedCardMessages[2].meaning}\n\n`;
             userPrompt += "これらを踏まえて、結婚運の流れとアドバイスを教えてください。";
 
-            // テキストで送りたい内容を整形
-            // ここではsystemとuserそれぞれのプロンプトを単純にテキスト連結していますが、
-            // GAS側でこのテキストを受け取ってパースする必要があります。
-            const textPayload = 
-                "ROLE:SYSTEM\n" + systemPrompt + "\n" +
-                "ROLE:USER\n" + userPrompt;
+            const messages = [
+                { "role": "system", "content": systemPrompt },
+                { "role": "user", "content": userPrompt }
+            ];
 
-            const endpoint = "https://script.google.com/macros/s/AKfycbzXbeioQZCoU9Ib4BWjkH0kkpU-ImY7Ujwi-Ltpxx1ajTvi5nXHDmlnVIiPQC5EekHF/exec";
+            const payload = {
+                "model": "Mistral-Nemo-12B-Instruct-2407",
+                "messages": messages,
+                "repetition_penalty": 1.1,
+                "temperature": 0.7,
+                "top_p": 0.9,
+                "top_k": 40,
+                "max_tokens": 1024,
+                "stream": false
+            };
 
             try {
-                const response = await fetch(endpoint, {
+                const response = await fetch("https://api.arliai.com/v1/chat/completions", {
                     method: "POST",
                     headers: {
-                        "Content-Type": "text/plain"
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${ARLIAI_API_KEY}`
                     },
-                    // JSON.stringifyは不要。テキストをそのまま送る
-                    body: textPayload
+                    body: JSON.stringify(payload)
                 });
 
                 if (!response.ok) {
-                    throw new Error("Failed to call GAS endpoint");
+                    throw new Error("API request failed");
                 }
 
-                // レスポンスをテキストで取得
-                const resultText = await response.text();
-                console.log("GAS API Result (text):", resultText);
+                const result = await response.json();
 
-                // 結果をmeaningContainerに表示
                 const meaningContainer = document.getElementById('meaningContainer');
-                meaningContainer.innerHTML += `<hr><h2>総合リーディング結果</h2><p>${resultText}</p>`;
+                meaningContainer.innerHTML += `<hr><h2>総合リーディング結果</h2><p>${result.choices[0].message.content}</p>`;
             } catch (error) {
-                console.error("Error calling GAS endpoint:", error);
+                console.error("Error calling ARLIAI API:", error);
             }
         }
-
-
+        
         window.onload = initializeCards;
     </script>
 </body>

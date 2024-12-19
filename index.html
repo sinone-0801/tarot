@@ -294,6 +294,7 @@
         let currentRotationAngle = 0;
         let currentState = 'initial';
         let revealCount = 0;
+        let revealedCardMessages = []; // 各カードめくり時にメッセージを保持
 
         // meaningsを保持する変数
         let meanings = null;
@@ -305,7 +306,7 @@
             '18_the_moon.png', '19_the_sun.png', '1_the_magician.png', '20_judgement.png',
             '21_the_world.png', '2_the_high_priestes.png', '3_the_empress.png', '4_the_emperor.png',
             '5_the_hierophant.png', '6_the_lovers.png', '7_the_chariot.png', '8_strength.png',
-            '9_justice.png', '9_the_hermit.png', 'ace_of_cups.png', 'ace_of_pentacles.png',
+            '11_justice.png', '9_the_hermit.png', 'ace_of_cups.png', 'ace_of_pentacles.png',
             'ace_of_swords.png', 'ace_of_wands.png', 'cups10.png', 'cups2.png', 'cups3.png',
             'cups4.png', 'cups5.png', 'cups6.png', 'cups7.png', 'cups8.png', 'cups9.png',
             'king_of_cups.png', 'king_of_pentacles.png', 'king_of_swords.png', 'king_of_wands.png',
@@ -336,7 +337,7 @@
         }
 
         function initializeCards() {
-            fetch('data/meaning.json') // meaning.jsonをロード
+            fetch('data/meaning.json')
                 .then(response => response.json())
                 .then(data => {
                     meanings = data;
@@ -742,11 +743,6 @@
                 } : null;
             }
 
-            // 特定の順番：9_justice.png, 9_the_hermit.pngなどもあるため調整
-            // "9_justice.png"や"9_the_hermit.png" はMajor Arcanaのミスネーミングかもしれませんが、
-            // データ上で`9_justice.png`は 正義(JUSTICE)か隠者(HERMIT)が9番か11番かルールによる。
-            // ここでは既にmajor_arcanaで処理しているので、上記以外のマッチしないものは対象外とします。
-            
             return null;
         }
 
@@ -765,38 +761,101 @@
             const meaningContainer = document.getElementById('meaningContainer');
             meaningContainer.style.display = 'block';
 
-            // 正逆位置判定: 逆位置ならnegativeやエネルギーの滞り等を示唆
+            // 正逆位置判定
             let message = '';
+            let orientation = cardInfo.isReversed ? '逆位置' : '正位置';
+            let simpleMeaning = ''; // 後でuserメッセージ用にシンプルな意味を格納
+
             if (cardMeaningObj) {
                 if (cardMeaningObj.positive && cardMeaningObj.negative) {
                     // Major Arcana
                     if (cardInfo.isReversed) {
                         message = `<h2>${cardMeaningObj.name}（逆位置）</h2><p><strong>ネガティブ面:</strong> ${cardMeaningObj.negative.join('、')}</p>`;
+                        simpleMeaning = `逆位置: ${cardMeaningObj.negative.join('、')}`;
                     } else {
                         message = `<h2>${cardMeaningObj.name}（正位置）</h2><p><strong>ポジティブ面:</strong> ${cardMeaningObj.positive.join('、')}</p>`;
+                        simpleMeaning = `正位置: ${cardMeaningObj.positive.join('、')}`;
                     }
                 } else {
                     // Minor Arcana
-                    // Minor ArcanaはJSONでは "meaning" フィールドだけだったので、正逆位置は自身で解釈する必要あり。
-                    // シンプルに正位置/逆位置として同じ意味を参照する場合、逆位置なら「停滞または課題」を示唆する文言を付与。
                     if (cardInfo.isReversed) {
-                        message = `<h2>${cardMeaningObj.name}（逆位置）</h2><p>${cardMeaningObj.meaning}（逆位置でこのエネルギーが滞ったり不足している可能性があります。）</p>`;
+                        message = `<h2>${cardMeaningObj.name}（逆位置）</h2><p>${cardMeaningObj.meaning}（逆位置でこのエネルギーが停滞しています。）</p>`;
+                        simpleMeaning = `逆位置: ${cardMeaningObj.meaning}（停滞）`;
                     } else {
                         message = `<h2>${cardMeaningObj.name}（正位置）</h2><p>${cardMeaningObj.meaning}</p>`;
+                        simpleMeaning = `正位置: ${cardMeaningObj.meaning}`;
                     }
                 }
             } else {
                 message = `<h2>不明なカード</h2><p>意味が見つかりません。</p>`;
+                simpleMeaning = `意味不明`;
             }
 
-            // 既存の意味テキストに追記
+            // 表示用のメッセージを追加
             meaningContainer.innerHTML += message;
+
+            // 後でendpointに送信するためのメッセージを保存
+            revealedCardMessages.push({
+                name: cardMeaningObj ? cardMeaningObj.name : cardInfo.filename,
+                orientation: orientation,
+                meaning: simpleMeaning
+            });
 
             revealCount++;
 
             if (revealCount >= selectedCards.length) {
                 document.getElementById('revealButton').style.display = 'none';
                 updateStatus('リーディングが完了しました');
+
+                // 全カード表示後にエンドポイントへ問い合わせ
+                callGASEndpoint();
+            }
+        }
+
+        async function callGASEndpoint() {
+            // system prompt
+            const systemPrompt = "あなたは凄腕のタロット占い士です。結婚運の過去・現在・未来についての占いを行ってください。";
+
+            // user prompt（例として、1枚目が過去、2枚目が現在、3枚目が未来とする）
+            let userPrompt = "以下が展開された3枚のカードです。\n";
+            userPrompt += "これらは結婚運の過去・現在・未来を表しています。\n\n";
+            userPrompt += `【過去】 1枚目: ${revealedCardMessages[0].name}（${revealedCardMessages[0].orientation}）\n意味: ${revealedCardMessages[0].meaning}\n\n`;
+            userPrompt += `【現在】 2枚目: ${revealedCardMessages[1].name}（${revealedCardMessages[1].orientation}）\n意味: ${revealedCardMessages[1].meaning}\n\n`;
+            userPrompt += `【未来】 3枚目: ${revealedCardMessages[2].name}（${revealedCardMessages[2].orientation}）\n意味: ${revealedCardMessages[2].meaning}\n\n`;
+            userPrompt += "これらを踏まえて、結婚運の流れとアドバイスを教えてください。";
+
+            const messages = [
+                { "role": "system", "content": systemPrompt },
+                { "role": "user", "content": userPrompt }
+            ];
+
+            const payload = {
+                "messages": messages
+            };
+
+            const endpoint = "https://script.google.com/macros/s/AKfycbxYHNXjPmtNTrOBKDfAIS5KDHAxYl15_fk2vDAB4XfmgQWYkQn2AJ-OHaHxx0m3WOx9/exec";
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to call GAS endpoint");
+                }
+
+                const result = await response.json();
+                console.log("GAS API Result:", result);
+
+                // 結果表示: meaningContainerに追記
+                const meaningContainer = document.getElementById('meaningContainer');
+                meaningContainer.innerHTML += `<hr><h2>総合リーディング結果</h2><p>${result.choices[0].message.content}</p>`;
+            } catch (error) {
+                console.error("Error calling GAS endpoint:", error);
             }
         }
 

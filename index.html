@@ -201,7 +201,7 @@
             }
         }
 
-        .button {
+        .button, .pile-button {
             padding: 15px 30px;
             font-size: 1.2em;
             background-color: #4a90e2;
@@ -211,6 +211,75 @@
             cursor: pointer;
             transition: all 0.3s;
             z-index: 1000;
+        }
+
+        /* タブレット用 */
+        @media (max-width: 768px) {
+            .button, .pile-button {
+                padding: 12px 24px;
+                font-size: 1em;
+            }
+
+            .pile-buttons-row {
+                gap: 10px;
+            }
+
+            .pile-order-display {
+                gap: 40px;
+            }
+
+            .button-container {
+                gap: 10px;
+            }
+        }
+
+        /* スマートフォン用 */
+        @media (max-width: 480px) {
+            .button, .pile-button {
+                padding: 8px 16px;
+                font-size: 0.9em;
+                /* 幅は100%ではなく、適度なサイズに */
+                min-width: 80px;
+                max-width: 200px;
+            }
+
+            .pile-buttons-row {
+                gap: 8px;
+            }
+
+            .pile-order-display {
+                gap: 30px;
+            }
+
+            .button-container {
+                gap: 8px;
+                padding: 0 10px;
+                bottom: 10px;
+            }
+
+            /* 方向選択ボタンのサイズ調整 */
+            .direction-buttons {
+                gap: 8px;
+            }
+
+            .direction-buttons .button {
+                padding: 8px 12px;
+                font-size: 0.85em;
+                min-width: 60px;
+            }
+
+            /* 山札選択ボタンのサイズ調整 */
+            .pile-button {
+                padding: 8px 12px;
+                font-size: 0.85em;
+                min-width: 60px;
+            }
+
+            /* テーマ送信ボタンのサイズ調整 */
+            #sendThemeBtn {
+                max-width: 150px;
+                font-size: 0.9em;
+            }
         }
 
         .button:hover {
@@ -235,12 +304,6 @@
                 font-size: 0.9em;
                 width: 100%;
             }
-        }
-
-        .pile-buttons {
-            display: none;
-            gap: 20px;
-            width: 100%;
         }
 
         .pile-selection {

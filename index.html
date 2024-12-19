@@ -1019,11 +1019,11 @@
             if (revealCount >= selectedCards.length) {
                 document.getElementById('revealButton').style.display = 'none';
                 updateStatus('リーディングが完了しました');
-                
-                const wait = async (ms) => new Promise(resolve => setTimeout(resolve, ms));
-                wait(2000);
-                // 全カード表示後に再度ARLIAI APIへ総合リーディング問い合わせ
-                callArliaiApiForFinalReading();
+
+                setTimeout(function() {
+                    // 全カード表示後に再度ARLIAI APIへ総合リーディング問い合わせ
+                    callArliaiApiForFinalReading();
+                }, 3000);
             }
         }
 

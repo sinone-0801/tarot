@@ -800,11 +800,7 @@
         }
 
         function divideIntoThreePiles() {
-            const pilePositions = [
-                { x: -300, y: 0 },
-                { x: 0, y: 0 },
-                { x: 300, y: 0 }
-            ];
+            const pilePositions = getPilePositions();
 
             cards.forEach((card, index) => {
                 const pile = index % 3;
@@ -823,6 +819,32 @@
                 document.getElementById('pileButtons').style.display = 'flex';
                 updateStatus('山札を重ねる順番を選択してください（左から1,2,3）');
             }, CARD_COUNT * 50 + 500);
+        }
+
+        function getPilePositions() {
+            // 画面幅に基づいて位置を計算
+            if (window.innerWidth <= 480) {
+                // スマートフォン向け
+                return [
+                    { x: -120, y: 0 },
+                    { x: 0, y: 0 },
+                    { x: 120, y: 0 }
+                ];
+            } else if (window.innerWidth <= 768) {
+                // タブレット向け
+                return [
+                    { x: -200, y: 0 },
+                    { x: 0, y: 0 },
+                    { x: 200, y: 0 }
+                ];
+            } else {
+                // デスクトップ向け（元のサイズ）
+                return [
+                    { x: -300, y: 0 },
+                    { x: 0, y: 0 },
+                    { x: 300, y: 0 }
+                ];
+            }
         }
 
         function selectPile(pileIndex) {

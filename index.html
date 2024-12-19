@@ -755,21 +755,18 @@
 
             cardToReveal.style.transform = 'rotateY(180deg)';
 
-            // カードの意味取得
             const cardInfo = selectedCards[revealCount];
             const cardMeaningObj = getCardMeaning(cardInfo.filename, meanings);
 
             const meaningContainer = document.getElementById('meaningContainer');
             meaningContainer.style.display = 'block';
 
-            // 正逆位置判定
             let message = '';
             let orientation = cardInfo.isReversed ? '逆位置' : '正位置';
-            let simpleMeaning = ''; // 後でuserメッセージ用にシンプルな意味を格納
+            let simpleMeaning = '';
 
             if (cardMeaningObj) {
                 if (cardMeaningObj.positive && cardMeaningObj.negative) {
-                    // Major Arcana
                     if (cardInfo.isReversed) {
                         message = `<h2>${cardMeaningObj.name}（逆位置）</h2><p><strong>ネガティブ面:</strong> ${cardMeaningObj.negative.join('、')}</p>`;
                         simpleMeaning = `逆位置: ${cardMeaningObj.negative.join('、')}`;
@@ -778,7 +775,6 @@
                         simpleMeaning = `正位置: ${cardMeaningObj.positive.join('、')}`;
                     }
                 } else {
-                    // Minor Arcana
                     if (cardInfo.isReversed) {
                         message = `<h2>${cardMeaningObj.name}（逆位置）</h2><p>${cardMeaningObj.meaning}（逆位置でこのエネルギーが停滞しています。）</p>`;
                         simpleMeaning = `逆位置: ${cardMeaningObj.meaning}（停滞）`;
@@ -792,10 +788,8 @@
                 simpleMeaning = `意味不明`;
             }
 
-            // 表示用のメッセージを追加
             meaningContainer.innerHTML += message;
 
-            // 後でendpointに送信するためのメッセージを保存
             revealedCardMessages.push({
                 name: cardMeaningObj ? cardMeaningObj.name : cardInfo.filename,
                 orientation: orientation,
@@ -807,9 +801,7 @@
             if (revealCount >= selectedCards.length) {
                 document.getElementById('revealButton').style.display = 'none';
                 updateStatus('リーディングが完了しました');
-
-                // 全カード表示後にエンドポイントへ問い合わせ
-                callGASEndpoint();
+                callArliaiAPI();
             }
         }
 
@@ -860,7 +852,7 @@
                 console.error("Error calling ARLIAI API:", error);
             }
         }
-        
+
         window.onload = initializeCards;
     </script>
 </body>

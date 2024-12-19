@@ -111,17 +111,18 @@
             user-select: none;
         }
 
+        /* カードサイズの調整 */
         @media (max-width: 768px) {
-            .card {
-                width: 121px;
-                height: 180px;
+            .card, .reading-card {
+                width: 108px; /* 元の2/3サイズ */
+                height: 160px;
             }
         }
 
         @media (max-width: 480px) {
-            .card {
-                width: 81px;
-                height: 120px;
+            .card, .reading-card {
+                width: 54px; /* 元の1/3サイズ */
+                height: 80px;
             }
         }
 
@@ -181,26 +182,7 @@
             transform: rotateY(180deg) rotate(180deg);
         }
 
-        .button-container {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-            z-index: 1000;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 90%;
-        }
-
-        @media (max-width: 768px) {
-            .button-container {
-                bottom: 20px;
-                gap: 10px;
-            }
-        }
-
+        /* ベースとなるボタンスタイル */
         .button, .pile-button {
             padding: 15px 30px;
             font-size: 1.2em;
@@ -213,183 +195,63 @@
             z-index: 1000;
         }
 
-        /* タブレット用 */
-        @media (max-width: 768px) {
-            .button, .pile-button {
-                padding: 12px 24px;
-                font-size: 1em;
-            }
-
-            .pile-buttons-row {
-                gap: 10px;
-            }
-
-            .pile-order-display {
-                gap: 40px;
-            }
-
-            .button-container {
-                gap: 10px;
-            }
-        }
-
-        /* スマートフォン用 */
-        @media (max-width: 480px) {
-            .button, .pile-button {
-                padding: 8px 16px;
-                font-size: 0.9em;
-                /* 幅は100%ではなく、適度なサイズに */
-                min-width: 80px;
-                max-width: 200px;
-            }
-
-            .pile-buttons-row {
-                gap: 8px;
-            }
-
-            .pile-order-display {
-                gap: 30px;
-            }
-
-            .button-container {
-                gap: 8px;
-                padding: 0 10px;
-                bottom: 10px;
-            }
-
-            /* 方向選択ボタンのサイズ調整 */
-            .direction-buttons {
-                gap: 8px;
-            }
-
-            .direction-buttons .button {
-                padding: 8px 12px;
-                font-size: 0.85em;
-                min-width: 60px;
-            }
-
-            /* 山札選択ボタンのサイズ調整 */
-            .pile-button {
-                padding: 8px 12px;
-                font-size: 0.85em;
-                min-width: 60px;
-            }
-
-            /* テーマ送信ボタンのサイズ調整 */
-            #sendThemeBtn {
-                max-width: 150px;
-                font-size: 0.9em;
-            }
-        }
-
-        /* pile-buttonの基本スタイル修正 */
-        .pile-button {
-            padding: 10px 20px;
-            font-size: 1em;
-            background-color: #4a90e2;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 30%; /* 追加 */
-            min-width: auto; /* min-widthを削除 */
-        }
-
-        .pile-buttons-row {
-            display: flex;
-            gap: 20px;
-            width: 100%;
-            justify-content: center;
-        }
-
-        /* タブレット用 */
-        @media (max-width: 768px) {
-            .pile-button {
-                padding: 12px;
-                font-size: 0.9em;
-                width: 30%;
-            }
-
-            .pile-buttons-row {
-                gap: 10px;
-            }
-        }
-
-        /* スマートフォン用 */
-        @media (max-width: 480px) {
-            .pile-button {
-                padding: 8px;
-                font-size: 0.85em;
-                width: 30%;
-            }
-
-            .pile-buttons-row {
-                gap: 8px;
-                flex-direction: row; /* 縦並びを解除 */
-            }
-        }
-
-        .button:hover {
+        .button:hover, .pile-button:hover {
             background-color: #357abd;
         }
 
-        .button:disabled {
+        .button:disabled, .pile-button:disabled {
             background-color: #cccccc;
             cursor: not-allowed;
         }
 
-        @media (max-width: 768px) {
-            .button {
-                padding: 10px 20px;
-                font-size: 1em;
-            }
+        /* ボタンコンテナのベーススタイル */
+        .button-container {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            z-index: 1000;
         }
 
-        @media (max-width: 480px) {
-            .button {
-                padding: 8px 16px;
-                font-size: 0.9em;
-                width: 100%;
-            }
+        /* Pileボタン関連のスタイル */
+        .pile-buttons {
+            width: 100%;
         }
 
         .pile-selection {
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 10px;
-            width: 100%;
         }
 
         .pile-buttons-row {
             display: flex;
-            gap: 20px;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 10px;
             width: 100%;
-            justify-content: center;
         }
 
-        @media (max-width: 480px) {
-            .pile-buttons-row {
-                flex-direction: column;
-                gap: 10px;
-            }
+        .pile-button {
+            width: 30%;
+            padding: 10px 5px;
+            white-space: nowrap;
+        }
+
+        .pile-button.selected {
+            background-color: #357abd;
         }
 
         .pile-order-display {
             display: flex;
             gap: 100px;
-        }
-
-        @media (max-width: 768px) {
-            .pile-order-display {
-                gap: 50px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .pile-order-display {
-                gap: 30px;
-            }
         }
 
         .pile-order-display span {
@@ -399,25 +261,66 @@
             font-weight: bold;
         }
 
-        .pile-button {
-            padding: 10px 20px;
-            font-size: 1em;
-            background-color: #4a90e2;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        /* 方向選択ボタン */
+        .direction-buttons {
+            display: none;
+            gap: 20px;
         }
 
-        @media (max-width: 480px) {
+        /* タブレット用メディアクエリ */
+        @media (max-width: 768px) {
+            .button-container {
+                bottom: 15px;
+                gap: 8px;
+            }
+
+            .button, .pile-button {
+                padding: 12px 24px;
+                font-size: 1em;
+            }
+
             .pile-button {
-                width: 100%;
-                padding: 8px 16px;
+                padding: 8px 4px;
+                font-size: 0.9em;
+            }
+
+            .pile-order-display {
+                gap: 50px;
             }
         }
 
-        .pile-button.selected {
-            background-color: #357abd;
+        /* スマートフォン用メディアクエリ */
+        @media (max-width: 480px) {
+            .button-container {
+                bottom: 10px;
+                gap: 6px;
+            }
+
+            .button {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+
+            .pile-button {
+                padding: 6px 3px;
+                font-size: 0.8em;
+            }
+
+            .direction-buttons {
+                width: 100%;
+            }
+
+            .direction-buttons .button {
+                width: calc(50% - 3px);
+            }
+
+            .pile-order-display {
+                gap: 30px;
+            }
+
+            #sendThemeBtn {
+                max-width: 150px;
+            }
         }
 
         .direction-buttons {
@@ -1170,9 +1073,19 @@
                 back.className = 'back';
                 back.style.backgroundImage = `url('data/back.png')`;
 
-                const xOffset = (i - 1) * 220;
+                // 画面幅に応じてxOffsetを調整
+                let xOffset;
+                if (window.innerWidth <= 480) {
+                    xOffset = (i - 1) * 70;  // スマートフォン用
+                } else if (window.innerWidth <= 768) {
+                    xOffset = (i - 1) * 140; // タブレット用
+                } else {
+                    xOffset = (i - 1) * 220; // デスクトップ用（既存の値）
+                }
+
                 const targetLeft = readingArea.offsetWidth / 2 - startPosition.width / 2 + xOffset;
                 const targetTop = readingArea.offsetHeight / 2 - startPosition.height / 2;
+
 
                 await new Promise(resolve => {
                     requestAnimationFrame(() => {

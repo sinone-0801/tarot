@@ -265,16 +265,16 @@
             <h1>タロット占い</h1>
         </div>
 
-        <div class="theme-input-container">
-            <p>何を占いますか？</p>
-            <textarea id="themeInput" placeholder="結婚、仕事、恋愛運など、占いたい内容を入力してください。"></textarea>
-            <button class="button" id="sendThemeBtn">占う内容を送信</button>
-        </div>
-
         <div class="table-area">
             <div class="status-message" id="statusMessage"></div>
             <div class="shuffle-area" id="shuffleArea"></div>
-            <div class="reading-area" id="readingArea"></div>
+            <div class="reading-area" id="readingArea">
+                <div class="theme-input-container">
+                    <p>何を占いますか？</p>
+                    <textarea id="themeInput" placeholder="結婚、仕事、恋愛運など、占いたい内容を入力してください。"></textarea>
+                    <button class="button" id="sendThemeBtn">占う内容を送信</button>
+                </div>        
+            </div>
             <div class="button-container">
                 <button class="button" id="shuffleButton" onclick="startShuffle()">シャッフル</button>
                 <div class="pile-buttons" id="pileButtons">

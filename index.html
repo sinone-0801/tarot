@@ -8,7 +8,7 @@
         body {
             font-family: sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 10px;
             min-height: 100vh;
             background-color: #f0f0f0;
             display: flex;
@@ -38,6 +38,18 @@
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
             overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .table-area {
+                height: 600px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .table-area {
+                height: 500px;
+            }
         }
 
         .table-area::before {
@@ -83,100 +95,6 @@
             align-items: center;
         }
 
-        .button {
-            padding: 15px 30px;
-            font-size: 1.2em;
-            background-color: #4a90e2;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 1000;
-        }
-
-        .button:hover {
-            background-color: #357abd;
-        }
-
-        .button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-
-        .status-message {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            font-size: 1.2em;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px 20px;
-            border-radius: 5px;
-            white-space: nowrap;
-            z-index: 5000;
-        }
-
-        .button-container {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-            z-index: 1000;
-        }
-
-        .pile-buttons {
-            display: none;
-            gap: 20px;
-        }
-
-        .pile-selection {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .pile-buttons-row {
-            display: flex;
-            gap: 20px;
-        }
-
-        .pile-order-display {
-            display: flex;
-            gap: 100px;
-        }
-
-        .pile-order-display span {
-            width: 50px;
-            text-align: center;
-            color: white;
-            font-weight: bold;
-        }
-
-        .pile-button {
-            padding: 10px 20px;
-            font-size: 1em;
-            background-color: #4a90e2;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .pile-button.selected {
-            background-color: #357abd;
-        }
-
-        .direction-buttons {
-            display: none;
-            gap: 20px;
-        }
-
         .card {
             position: absolute;
             z-index: 3000;
@@ -193,6 +111,20 @@
             user-select: none;
         }
 
+        @media (max-width: 768px) {
+            .card {
+                width: 121px;
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                width: 81px;
+                height: 120px;
+            }
+        }
+
         .reading-card {
             position: absolute;
             width: 162px;
@@ -203,6 +135,20 @@
             cursor: default;
             transform-style: preserve-3d;
             transition: transform 0.8s ease-in-out;
+        }
+
+        @media (max-width: 768px) {
+            .reading-card {
+                width: 121px;
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .reading-card {
+                width: 81px;
+                height: 120px;
+            }
         }
 
         .reading-card .front,
@@ -235,13 +181,149 @@
             transform: rotateY(180deg) rotate(180deg);
         }
 
-        .meaning-container {
-            margin-top: 20px;
-            background: #fff;
-            padding: 20px;
+        .button-container {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 90%;
+        }
+
+        @media (max-width: 768px) {
+            .button-container {
+                bottom: 20px;
+                gap: 10px;
+            }
+        }
+
+        .button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
             border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .button:hover {
+            background-color: #357abd;
+        }
+
+        .button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .button {
+                padding: 8px 16px;
+                font-size: 0.9em;
+                width: 100%;
+            }
+        }
+
+        .pile-buttons {
+            display: none;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .pile-selection {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .pile-buttons-row {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        @media (max-width: 480px) {
+            .pile-buttons-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        .pile-order-display {
+            display: flex;
+            gap: 100px;
+        }
+
+        @media (max-width: 768px) {
+            .pile-order-display {
+                gap: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .pile-order-display {
+                gap: 30px;
+            }
+        }
+
+        .pile-order-display span {
+            width: 50px;
             text-align: center;
-            max-width: 800px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .pile-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            .pile-button {
+                width: 100%;
+                padding: 8px 16px;
+            }
+        }
+
+        .pile-button.selected {
+            background-color: #357abd;
+        }
+
+        .direction-buttons {
+            display: none;
+            gap: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .direction-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .direction-buttons .button {
+                width: 100%;
+            }
         }
 
         .theme-input-container {
@@ -261,8 +343,12 @@
             z-index: 9000;
         }
 
-        #shuffleButton {
-            display: none;
+        @media (max-width: 768px) {
+            .theme-input-container {
+                width: 90%;
+                bottom: 80px;
+                padding: 15px;
+            }
         }
 
         textarea {
@@ -273,6 +359,55 @@
             border-radius: 5px;
             border: 1px solid #ccc;
             resize: vertical;
+        }
+
+        @media (max-width: 768px) {
+            textarea {
+                font-size: 16px;
+                height: 60px;
+            }
+        }
+
+        .meaning-container {
+            margin-top: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+        }
+
+        @media (max-width: 768px) {
+            .meaning-container {
+                padding: 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        .status-message {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.2em;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 5px;
+            width: 90%;
+            max-width: 600px;
+            white-space: normal;
+            z-index: 5000;
+        }
+
+        @media (max-width: 768px) {
+            .status-message {
+                font-size: 1em;
+                padding: 8px 15px;
+                top: 10px;
+            }
         }
 
         .loading-overlay {
@@ -287,6 +422,8 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            padding: 20px;
+            text-align: center;
         }
 
         .loading-text {
@@ -294,6 +431,13 @@
             font-size: 1.2em;
             margin-top: 20px;
             text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .loading-text {
+                font-size: 1em;
+                padding: 0 20px;
+            }
         }
 
         .loading-spinner {
@@ -305,15 +449,17 @@
             animation: spin 1s linear infinite;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
         .magic-circle {
             width: 80px;
             height: 80px;
             position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .magic-circle {
+                width: 60px;
+                height: 60px;
+            }
         }
 
         .magic-circle::before,
@@ -350,6 +496,20 @@
         @keyframes magicRotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        div {
+            white-space: pre-line;
+            word-wrap: break-word;
+        }
+
+        #shuffleButton {
+            display: none;
         }
     </style>
 </head>

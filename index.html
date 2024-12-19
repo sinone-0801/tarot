@@ -566,7 +566,7 @@
 
                     const meaningContainer = document.getElementById('meaningContainer');
                     meaningContainer.style.display = 'block';
-                    meaningContainer.innerHTML = `<h2>テーマへのアドバイス</h2><p>${initialAssistantMessage}</p>`;
+                    meaningContainer.innerHTML = `<h2>テーマへのアドバイス</h2><div>${initialAssistantMessage}</div>`;
 
                     document.getElementById('shuffleButton').style.display = 'block';
                 }, 1000);
@@ -1089,7 +1089,7 @@
                 setTimeout(() => {
                     hideLoading();
                     const meaningContainer = document.getElementById('meaningContainer');
-                    meaningContainer.innerHTML += `<hr><h2>総合リーディング結果</h2><p>${result.choices[0].message.content}</p>`;
+                    meaningContainer.innerHTML += `<hr><h2>総合リーディング結果</h2><div>${result.choices[0].message.content}</div>`;
                     
                     // 結果表示時にスクロールアニメーション
                     meaningContainer.scrollIntoView({ behavior: 'smooth' });

@@ -524,7 +524,7 @@
             showLoading('占いの準備をしています...');
 
             const systemPrompt = "あなたは凄腕のタロット占い士です。ユーザーが占いたいテーマや悩みがあります。これからあなたが占いを行いますので、占い前の会話と導入を日本語でしてください。ユーザーのことは「あなた」と呼んでください。";
-            const userPrompt = `ユーザーは以下のように発言し、占いを求めています:\n「${userTheme}」\nこのことについて、あなたはこれから占いを行います。\n占いの前に、タロット占い師としての視点から、占う内容を明確にして、ユーザーに語りかけてください。`;
+            const userPrompt = `私は以下のように、占いを求めています:\n「${userTheme}」\nこのことについて、あなたはこれから占いを行ってください。\n占いの前に、タロット占い師としての視点から、占う内容を明確にして、私に語りかけてください。`;
 
             const messages = [
                 { "role": "system", "content": systemPrompt },
@@ -1045,13 +1045,13 @@
             showLoading('タロットカードからのメッセージを読み解いています...');
 
             const systemPrompt = "あなたは凄腕のタロット占い士です。日本語で占いの結果を告げてください。ユーザーのことは「あなた」と呼んでください。";
-            let userPrompt = `ユーザーは「${themeMessageFromUser}」について占いを求めています。\n`;
+            let userPrompt = `私は「${themeMessageFromUser}」について占いを求めています。\n`;
             userPrompt += `以前、あなたは以下のアドバイスを伝えました:\n「${initialAssistantMessage}」\n\n`;
-            userPrompt += "ここで3枚のカードが展開され、それぞれ以下のような意味を持っています。\n\n";
+            userPrompt += "ここで3枚のタロットカードが展開され、それぞれ以下のような意味を持っています。\n\n";
             userPrompt += `【過去】 1枚目: ${revealedCardMessages[0].name}（${revealedCardMessages[0].orientation}）\n意味: ${revealedCardMessages[0].meaning}\n\n`;
             userPrompt += `【現在】 2枚目: ${revealedCardMessages[1].name}（${revealedCardMessages[1].orientation}）\n意味: ${revealedCardMessages[1].meaning}\n\n`;
             userPrompt += `【未来】 3枚目: ${revealedCardMessages[2].name}（${revealedCardMessages[2].orientation}）\n意味: ${revealedCardMessages[2].meaning}\n\n`;
-            userPrompt += "これらを踏まえて、ユーザーのテーマについて、過去・現在・未来の流れと、今後取るべきアクションをユーザーに対して総合的にアドバイスしてください。";
+            userPrompt += "これらを踏まえて、私のテーマについて、過去・現在・未来の流れと、今後取るべきアクションをユ私に対して総合的にアドバイスしてください。";
 
             const messages = [
                 { "role": "system", "content": systemPrompt },
